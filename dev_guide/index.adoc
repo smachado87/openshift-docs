@@ -5,11 +5,11 @@
 :icons:
 :experimental:
 
-This guide helps developers set up and configure a workstation to develop and deploy applications in an OpenShift cloud environment with a command-line interface (CLI). This guide provides detailed instructions and examples to help developers:
+Esta guia esta pensada para ayudar a los desarrolladores a instalar y configurar su equipo para desarrollar y desplegar aplicaciones en un ambiente de nube de Openshift utilizando para ello la linea de comandos (CLI). Esta guia provee instrucciones detalladas y ejemplos para ayudar a desarrolladores a:
 
-. Monitor and browse projects with the web console
-. Configure and utilize the CLI
-. Generate configurations using templates
-. Manage builds and webhooks
-. Define and trigger deployments
-. Integrate external services (databases, SaaS endpoints)
+. Monitorear y buscar proyectos con la consola web
+. Configurar y utilizar la linea de comandos (CLI)
+. Generar configuraciones usando plantillas predefinidas
+. Manejar desarrollos y webhooks
+. Definir y activar implementaciones
+. Integrar servicios externos (bases de datos, SaaS endpoints, etc)
