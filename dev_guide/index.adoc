@@ -1,4 +1,4 @@
-= Overview
+= Vista general
 {product-author}
 {product-version}
 :data-uri:
