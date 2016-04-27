@@ -1,4 +1,4 @@
-= Authentication
+= Autenticación
 {product-author}
 {product-version}
 :data-uri:
@@ -11,125 +11,120 @@ toc::[]
 
 [[web-console-authentication]]
 
-== Web Console Authentication
-When accessing the
-link:../architecture/infrastructure_components/web_console.html[web console]
-from a browser at *<master_public_addr>:8443*, you are automatically redirected
-to a login page.
+== Autenticación via Web
+Para acceder a la   
+link:../architecture/infrastructure_components/web_console.html[consola web]
+desde un navegador apuntamos a *<direccion_publica_master>:8443*, y se redirige automáticamente a la página de inicio de sesión.
 
 ifdef::openshift-origin[]
 .Web Console Login Page
 image::login_page.png["Web Console Login Page"]
 endif::[]
 
-Review the
-link:../architecture/infrastructure_components/web_console.html[browser versions
-and operating systems] that can be used to access the web console.
+Revisar las
+link:../architecture/infrastructure_components/web_console.html[versiones de navegadores y sistemas operativos] que se pueden utilizar para acceder a la consola web.
 
-You can provide your login credentials on this page to obtain a token to make
-API calls. After logging in, you can navigate your projects using the
-link:../architecture/infrastructure_components/web_console.html[web console].
+Puede proporcionar sus credenciales de acceso en esta página para obtener un token para hacer llamadas a la API. Luego de iniciar sesión, puede navegar a sus proyectos mediante la consola web.
+link:../architecture/infrastructure_components/web_console.html[consola web].
 
 [[cli-authentication]]
 
-== CLI Authentication
-You can authenticate from the command line using the CLI command `oc login`.
-You can link:../cli_reference/get_started_cli.html[get started with the CLI] by
-running this command without any options:
+== Autenticación via Linea de comandos
+Tambien puede autenticarse desde la línea de comandos mediante el comando `oc login`.
+Puedes link:../cli_reference/get_started_cli.html[iniciar con la linea de comandos] corriendo este comando sin ninguna opcion:
 
 ----
 $ oc login
 ----
 
-The command's interactive flow helps you establish a session to an OpenShift
-server with the provided credentials. If any information required to successfully
-log in to an OpenShift server is not provided, the command prompts for user
-input as required. The
-link:../cli_reference/get_started_cli.html#cli-configuration-files[configuration]
-is automatically saved and is then used for every subsequent command.
+Este comando es interactivo y nos facilita establecer sesion con el servidor de 
+Openshift con las credenciales provistas. Si falta informacion para conectarse 
+al servidor de Openshift, el comando le pide al usuario por los datos necesarios. 
+La 
+link:../cli_reference/get_started_cli.html#cli-configuration-files[configuracion]
+es automaticamente guardada y utilizada de ahi en mas para cada comando subsiguiente.
 
-All configuration options for the `oc login` command, listed in the `oc login
---help` command output, are optional. The following example shows usage with
-some common options:
+Todas las opciones de configuracion para el comando `oc login`, listadas con 
+`oc login --help` son opcionales. El siguiente ejemplo muestra el uso con algunos
+comandos usuales:
 
 [options="nowrap"]
 ----
-$ oc login [-u=<username>] \
-  [-p=<password>] \
-  [-s=<server>] \
-  [-n=<project>] \
-  [--certificate-authority=</path/to/file.crt>|--insecure-skip-tls-verify]
+$ oc login [-u=<usuario>] \
+  [-p=<contraseña>] \
+  [-s=<servidor>] \
+  [-n=<proyecto>] \
+  [--certificate-authority=</ruta/al/archivo.crt>|--insecure-skip-tls-verify]
 ----
 
-The following table describes these common options:
+La siguiente tabla describe opciones comunes de configuracion:
 
-.Common CLI Configuration Options
+.Opciones de configuracion de CLI
 [cols="1,2,5",options="header"]
 |===
 
-|Option |Syntax |Description
+|Opcion |Sintaxis |Descripcion
 
 .^|`-s, --server`
 a|[options="nowrap"]
 ----
-$ oc login -s=<server>
-|Specifies the host name of the OpenShift server. If a
-server is provided through this flag, the command does not ask for it
-interactively. This flag can also be used if you already have a CLI
-configuration file and want to log in and switch to another server.
+$ oc login -s=<servidor>
+|Especifica el nombre del servidor de Openshift. Si un nombre
+es dado atraves de esta opcion, el comando no lo pedira interactivamente.
+Esta opcion tambien se puede utilizar si ya tienes un servidor configurado
+y quieres cambiarte a otro servidor de Openshift.
 
 .^|`-u, --username` and `-p, --password`
 a|----
-$ oc login -u=<username> -p=<password>
+$ oc login -u=<usuario> -p=<contraseña>
 ----
-|Allows you to specify the credentials to log in to the OpenShift
-server. If user name or password are provided through these flags, the command
-does not ask for it interactively. These flags can also be used if you already
-have a configuration file with a session token established and want to log in and
-switch to another user name.
+|Permite especificar las credenciales para loguearte al servidor de Openshift.
+Si un usuario o contraseña son dados atraves de esta opcion, el comando no 
+lo pedira interactivamente. Esta opcion tambien se puede utilizar si ya tienes
+una sesion establecida y quieres cambiarte de usuario.
 
 .^|`-n, --namespace`
 a|----
-$ oc login -u=<username> -p=<password> -n=<project>
+$ oc login -u=<usuario> -p=<contraseña> -n=<proyecto>
 ----
-|A global CLI option which, when used with `oc login`, allows you to specify the
-project to switch to when logging in as a given user.
+|Una opcion global para la linea de comando, que cuando se utiliza con `oc login`
+, permite especificar a que proyecto nos conectamos con el usuario dado.
 
 .^|`--certificate-authority`
 a|[options="nowrap"]
 ----
-$ oc login --certificate-authority=<path/to/file.crt>
+$ oc login --certificate-authority=<ruta/al/archivo.crt>
 ----
-|Correctly and securely authenticates with an OpenShift
-server that uses HTTPS. The path to a certificate authority file must be
-provided.
+|Nos autentica correctamente y de forma segura con un servidor de Openshift
+que utiliza HTTPS. La ruta al archivo de la entidad cerificadora debe ser
+ingresada
 
 .^|`--insecure-skip-tls-verify`
 a|[options="nowrap"]
 ----
 $ oc login --insecure-skip-tls-verify
 ----
-|Allows interaction with an HTTPS server bypassing the server
-certificate checks; however, note that it is not secure. If you try to `oc
-login` to a HTTPS server that does not provide a valid certificate, and this or
-the `--certificate-authority` flags were not provided, `oc login` will prompt
-for user input to confirm (`y/N` kind of input) about connecting insecurely.
+|Permite la interaccion con un servidor configurado con HTTPS, salteando
+los chequeos de certificados; aunque, ten en cuenta que no es una conexion
+segura. Si intentas conectrte con `oc login` a un servidor configurado con
+HTTPS que no provee un certificado válido, y este o la opcion `--certificate-authority`
+no fue usada, `oc login` va a pedirle confirmacion al usuario (y/n) para
+conectarse de forma insegur.
 |===
 
-CLI configuration files allow you to easily
-link:../cli_reference/manage_cli_profiles.html[manage multiple CLI profiles].
+Los archivos de configuracion de linea de comando te permiten facilmente 
+link:../cli_reference/manage_cli_profiles.html[manejar multiples perfiles de linea de comando].
 
 // tag::systemadminlogin[]
 
-[NOTE]
+[NOTA]
 ====
-If you have access to administrator credentials but are no longer logged in as
-the link:/architecture/core_concepts/projects_and_users.html#users[default
-system user] *system:admin*, you can log back in as this user at any time as
-long as the credentials are still present in your
-link:../cli_reference/get_started_cli.html#cli-configuration-files[CLI
-configuration file]. The following command logs in and switches to the *default*
-project:
+Si usted tiene acceso a las credenciales de administrador, pero ya no está
+en el sistema como el link:/architecture/core_concepts/projects_and_users.html#users[usuario por defecto]
+, puede volver a iniciar sesión como este usuario en cualquier momento, 
+siempre que las credenciales estén todavía presentes en el archivo de 
+link:../cli_reference/get_started_cli.html#cli-configuration-files[configuración de linea de comando]. 
+El siguiente comando nos autentica y cambia al proyecto *default* automaticamente.
 
 ----
 $ oc login -u system:admin -n default
