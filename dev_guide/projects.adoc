@@ -89,9 +89,9 @@ y conectarse , sera presentado con una lista de los proyectos a los cuales tiene
 acceso: 
 
 ====
-
 image::console_projects.png["Projects Page"]
 ====
+
 
 Si utilizas link:../cli_reference/get_started_cli.html[la linea de comandos] para
 link:#create-a-project[crear un nuevo proyecto], puedes refrescar la pagina en el
@@ -103,7 +103,7 @@ overview] for that project.
 
 [[check-project-status]]
 
-== Verificando el Estado de un Proyecto
+== Verificando el estado de un Proyecto
 
 El commando `oc status` nos provee con una vista general a alto nivel del proyecto
 que tenemos seleccionado, con una vista de sus componentes y las relaciones entre
@@ -129,7 +129,6 @@ Para filtrar por Etiquetas:
 . Seleccionar un tipo de Etiqueta:
 +
 ====
-
 image::console_filter_step1.png["Web Console Filter Step 1"]
 ====
 
@@ -166,7 +165,7 @@ image::console_filter_active.png["Web Console Filter Active"]
 
 == Borrando un Proyecto
 
-CUando se borra un Proyecto, el servidor actualiza el estado del proyecto a *Terminating*
+Cuando se borra un Proyecto, el servidor actualiza el estado del proyecto a *Terminating*
 en lugar de *Active*. Luego el servidor borra todo el contenido del proyecto que esta en
 estado *Terminating* y por ultimo quita el proyecto. Cuando un proyecto esta en estado
 *Terminating*, un usuario no puede agregar contenido nuevo al proyecto. Los proyectos pueden
