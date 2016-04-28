@@ -1,4 +1,4 @@
-= Projects
+= Proyectos
 {product-author}
 {product-version}
 :data-uri:
@@ -10,92 +10,92 @@
 
 toc::[]
 
-== Overview
+== Vista general
 
-A link:../architecture/core_concepts/projects_and_users.html[project] allows a
-community of users to organize and manage their content in isolation from other
-communities.
+Un link:../architecture/core_concepts/projects_and_users.html[proyecto] le permite
+a una comunidad de usuarios, organizarse y manejar su contenido en un ambiante
+aislado de otras comunidades.
 
 [[create-a-project]]
 
-== Creating a Project
+== Creando un Proyecto
 
 ifdef::openshift-enterprise,openshift-origin[]
 link:../admin_guide/managing_projects.html#selfprovisioning-projects[If allowed]
 endif::[]
 ifdef::openshift-dedicated,openshift-online[]
-If allowed
+SI esta permitido
 endif::[]
-by your cluster
-administrator, you can create a new project using link:../cli_reference/index.html[the CLI] or the link:../architecture/infrastructure_components/web_console.html[web console].
+por tu administrador del cluster, puedes crear un nuevo proyecto usando 
+link:../cli_reference/index.html[la linea de comandos] o via la link:../architecture/infrastructure_components/web_console.html[consola web].
 
-To create a new project using the CLI:
+Creando un nuevo proyecto utilizando la linea de comandos:
 
 ----
-$ oc new-project <project_name> \
-    --description="<description>" --display-name="<display_name>"
+$ oc new-project <nombre_proyecto> \
+    --description="<descripcion>" --display-name="<nombre_para_mostrar>"
 ----
 
-For example:
+Ejemplo:
 
 ====
 
 ----
-$ oc new-project hello-openshift \
-    --description="This is an example project to demonstrate OpenShift v3" \
-    --display-name="Hello OpenShift"
+$ oc new-project hola-openshift \
+    --description="Esto es un proyecto de ejemplo en OpenShift v3" \
+    --display-name="Hola OpenShift"
 ----
 ====
 
-[NOTE]
+[NOTAS]
 ====
-The number of projects you are allowed to create
+El numero de proyectos que tienes permisos para crear
 ifdef::openshift-enterprise,openshift-origin[]
-link:../admin_guide/selfprovisioned_projects.html#limit-projects-per-user[may be limited by the system administrator].
+link:../admin_guide/selfprovisioned_projects.html#limit-projects-per-user[puede estar limitado por el administrador del sistema].
 endif::[]
 ifdef::openshift-dedicated,openshift-online[]
-may be limited by the system administrator.
+puede estar limitado por el administrador del sistema.
 endif::[]
-Once your limit is reached, you may need to delete an existing project in order to create a new one.
+Una vez que se llega a dicho limite, es necesario borrar un proyecto existente para crear uno nuevo.
 ====
 
 [[view-projects]]
 
-== Viewing Projects
+== Visualizando Proyectos
 
-When viewing projects, you are restricted to seeing only the projects you have
-access to view based on the
-link:../architecture/additional_concepts/authorization.html[authorization
-policy].
+A la hora de visualizar proyectos, estaras restringido a ver solamente los proyectos
+a los cuales tienes permiso de accesso, basandose en la 
+link:../architecture/additional_concepts/authorization.html[politica de autorizacion].
 
-To view a list of projects:
+Para ver el listado de proyectos:
 
 ----
 $ oc get projects
 ----
 
-You can change from the current project to a different project for CLI
-operations. The specified project is then used in all subsequent operations that
-manipulate project-scoped content:
+Puedes cambiar del proyecto actual a otro proyecto para manejarlo desde la linea de comandos.
+El proyecto especificado sera utilizado para todos los comandos subsiguientes que manejen 
+comandos relativos al proyecto.
 
 ----
-$ oc project <project_name>
+$ oc project <nombre_del_proyecto>
 ----
 
-You can also use the
-link:../architecture/infrastructure_components/web_console.html[web console] to
-view and change between projects. After link:authentication.html[authenticating]
-and logging in, you are presented with a list of projects that you have access
-to:
+Tambien puedes usar la
+link:../architecture/infrastructure_components/web_console.html[consola web] para
+ver y cambiar entre proyectos. Luego de 
+view and change between projects. After link:authentication.html[autenticarse]
+y conectarse , sera presentado con una lista de los proyectos a los cuales tienes
+acceso: 
 
 ====
 
 image::console_projects.png["Projects Page"]
 ====
 
-If you use link:../cli_reference/get_started_cli.html[the CLI] to
-link:#create-a-project[create a new project], you can then refresh the page in
-the browser to see the new project.
+Si utilizas link:../cli_reference/get_started_cli.html[la linea de comandos] para
+link:#create-a-project[crear un nuevo proyecto], puedes refrescar la pagina en el
+navegador para ver el nuevo proyecto creado.
 
 Selecting a project brings you to the
 link:../architecture/infrastructure_components/web_console.html#project-overviews[project
@@ -103,10 +103,11 @@ overview] for that project.
 
 [[check-project-status]]
 
-== Checking Project Status
+== Verificando el Estado de un Proyecto
 
-The `oc status` command provides a high-level overview of the current project,
-with its components and their relationships. This command takes no argument:
+El commando `oc status` nos provee con una vista general a alto nivel del proyecto
+que tenemos seleccionado, con una vista de sus componentes y las relaciones entre
+los mismos. Dicho comando no necesita opciones:
 
 ----
 $ oc status
@@ -114,48 +115,47 @@ $ oc status
 
 [[filtering-by-labels]]
 
-== Filtering by Labels
-You can filter the contents of a project page in the
-link:../architecture/infrastructure_components/web_console.html[web console] by
-using the
-link:../architecture/core_concepts/pods_and_services.html#labels[labels] of a
-resource. You can pick from a suggested label name and values, or type in your
-own. Multiple filters can be added. When multiple filters are applied, resources
-must match all of the filters to remain visible.
+== Filtrando por Etiquetas
+Puedes filtrar los contenidos de un projecto en la
+link:../architecture/infrastructure_components/web_console.html[consola web] con
+el uso de
+link:../architecture/core_concepts/pods_and_services.html#labels[etiquetas] de un 
+recurso. Puedes escoger una etiqueta sugerida ya con nombre y valores, o escribir
+uno propio. Se puede configurar varios filtros. Cuando se aplican varios filtros,
+los recursos deben igualar todos los filtros para que sigan siendo visibles.
 
-To filter by labels:
+Para filtrar por Etiquetas:
 
-. Select a label type:
+. Seleccionar un tipo de Etiqueta:
 +
 ====
 
 image::console_filter_step1.png["Web Console Filter Step 1"]
 ====
 
-. Select one of the following:
+. Seleccionar uno de los siguientes:
 +
 [horizontal]
-exists:: Verify that the label name exists, but ignore its value.
-in:: Verify that the label name exists and is equal to one of the selected
-values.
-not in:: Verify that the label name does not exist, or is not equal to any of
-the selected values.
+exists:: Verifica que el nombre de la etiqueta exista, pero ignora su valor.
+in:: Verifica que el nombre de la etiqueta exista y que es igual a uno de los valores 
+seleccionados.
+not in::  Verifica que el nombre de la etiqueta no exista, o que no es igual a ninguno 
+de los valores seleccionados.
 +
 ====
 
 image::console_filter_step2.png["Web Console Filter Step 2"]
 ====
 +
-.. If you selected *in* or *not in*, select a set of values then select
-*Filter*:
+.. Si tu seleccionaste *in* o *not in*, elige un valor y luego seleccion *Filter*:
 +
 ====
 
 image::console_filter_step3.png["Web Console Filter Step 3"]
 ====
 
-. After adding filters, you can stop filtering by selecting *Clear all filters*
-or by clicking individual filters to remove them:
+. Luego de agregar filtros, puedes quitar el filtrado seleccionando *Clear all filters*
+o haciendo clic en cada filtro individualmente para quitarlos:
 +
 ====
 
@@ -164,16 +164,16 @@ image::console_filter_active.png["Web Console Filter Active"]
 
 [[delete-a-project]]
 
-== Deleting a Project
+== Borrando un Proyecto
 
-When you delete a project, the server updates the project status to Terminating
-from Active. The server then clears all content from a project that is
-Terminating before finally removing the project. While a project is in
-Terminating status, a user cannot add new content to the project. Projects can
-be deleted from the CLI or the web console.
+CUando se borra un Proyecto, el servidor actualiza el estado del proyecto a *Terminating*
+en lugar de *Active*. Luego el servidor borra todo el contenido del proyecto que esta en
+estado *Terminating* y por ultimo quita el proyecto. Cuando un proyecto esta en estado
+*Terminating*, un usuario no puede agregar contenido nuevo al proyecto. Los proyectos pueden
+ser borrados desde la linea de comandos o desde la consola web.
 
-To delete a project using the CLI:
+Borrando un proyecto utilizando la linea de comando:
 
 ----
-$ oc delete project <project_name>
+$ oc delete project <nombre_del_proyecto>
 ----
