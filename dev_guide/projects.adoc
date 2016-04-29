@@ -21,10 +21,10 @@ aislado de otras comunidades.
 == Creando un Proyecto
 
 ifdef::openshift-enterprise,openshift-origin[]
-link:../admin_guide/managing_projects.html#selfprovisioning-projects[If allowed]
+link:../admin_guide/managing_projects.html#selfprovisioning-projects[Si esta permitido]
 endif::[]
 ifdef::openshift-dedicated,openshift-online[]
-SI esta permitido
+Si esta permitido
 endif::[]
 por tu administrador del cluster, puedes crear un nuevo proyecto usando 
 link:../cli_reference/index.html[la linea de comandos] o via la link:../architecture/infrastructure_components/web_console.html[consola web].
