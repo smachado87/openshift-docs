@@ -1,4 +1,4 @@
-= Creating New Applications
+= Creando Nuevas Aplicaciones
 {product-author}
 {product-version}
 :data-uri:
@@ -9,19 +9,23 @@
 
 toc::[]
 
-== Overview
+== Vista General
 
-You can create a new OpenShift application using the
-link:../architecture/infrastructure_components/web_console.html[web console] or
-by running the `oc new-app` command link:#using-the-cli[from the CLI]. OpenShift
-creates a new application by specifying link:#specifying-source-code[source
-code], link:#specifying-an-image[images], or
-link:#specifying-a-template[templates]. The `new-app` command looks for images
-on the local Docker installation (if available), in a
-link:../architecture/infrastructure_components/image_registry.html[Docker
-registry], or an OpenShift
-link:../architecture/core_concepts/builds_and_image_streams.html#image-streams[image
-stream].
+Puedes crear una nueva aplicacion en OpenShift usando la 
+link:../architecture/infrastructure_components/web_console.html[consola web] o
+corriendo el comando `oc new-app` command link:#using-the-cli[desde la linea de comando]. Openshift
+crea una nueva aplicacion especificandole: link:#specifying-source-code[codigo
+fuente], link:#specifying-an-image[imagenes], o link:#specifying-a-template[plantillas].
+El comando `new-app` busca imagenes en el directorio local de Docker (si esta disponible),
+en un link:../architecture/infrastructure_components/image_registry.html[Registro
+Docker], y en el link:../architecture/core_concepts/builds_and_image_streams.html#image-streams[##image stream##]
+de OpenShift.
+
+Si se especifica un codigo fuente, `new-app` intenta crear un 
+link:builds.html#defining-a-buildconfig[##build configuration##] que desarrolla tu codigo
+en una nueva link:../architecture/core_concepts/builds_and_image_streams.html#image-streams[imagen]
+de una aplicacion..
+
 
 If you specify source code, `new-app` attempts to construct a
 link:builds.html#defining-a-buildconfig[build configuration] that builds your
